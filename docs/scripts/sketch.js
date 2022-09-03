@@ -29,7 +29,7 @@ function setup() {
     }
 
     let root = build_kdtree(data);
-    drawGraph(getTextFromTree(root));
+    drawGraph(generate_dot(root));
     console.log(root);
 }
 

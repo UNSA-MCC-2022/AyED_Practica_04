@@ -1,18 +1,16 @@
 function drawGraph(dotString) {
-    var viz = new Viz();
+    let diagramText = " digraph G { " + dotString +" }";
+    let viz = new Viz();
 
-    viz.renderSVGElement(dotString)
+    viz.renderSVGElement(diagramText)
         .then(function (element) {
-            console.log(element);
+            //console.log(element);
             var parentTree = document.getElementById('KdTreeSvg');
             parentTree.outerHTML = element.outerHTML;
-
-
-            //element.parent("KdTreeSvg");
-            document.body.appendChild(element);
+            //document.body.appendChild(element);
         })
         .catch(error => {
-            viz = new Viz();
+            //viz = new Viz();
             console.error(error);
         });
 }
