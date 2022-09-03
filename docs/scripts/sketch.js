@@ -1,7 +1,8 @@
 function setup() {
-    var width = 250;
-    var height = 200;
-    createCanvas(width, height);
+    let width = 500; //250;
+    let height = 500; //200;
+    let kdTreeCanvas = createCanvas(width, height);
+    kdTreeCanvas.parent("KdTreeCanvas");
 
     background(0);
     for (var x = 0; x < width; x += width / 10) {
