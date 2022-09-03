@@ -7,8 +7,8 @@ function setup() {
     kdTreeCanvas.parent("KdTreeCanvas");
 
     background(0);
-    for (var x = 0; x < width; x += width / 10) {
-        for (var y = 0; y < height; y += height / 10) {
+    for (let x = 0; x < width; x += width / 10) {
+        for (let y = 0; y < height; y += height / 10) {
             stroke(125, 125, 125);
             strokeWeight(1);
             line(x, 0, x, height);
@@ -16,10 +16,10 @@ function setup() {
         }
     }
 
-    var data = [];
+    let data = [];
     for (let i = 0; i < 12; i++) {
-        var x = Math.floor(Math.random() * width);
-        var y = Math.floor(Math.random() * height);
+        let x = Math.floor(Math.random() * width);
+        let y = Math.floor(Math.random() * height);
         data.push([x, y]);
 
         fill(255, 255, 255);
@@ -28,6 +28,23 @@ function setup() {
         text(x + ',' + y, x + 5, height - y);// 200 -y para q se dibuje apropiadamente
     }
 
-    var root = build_kdtree(data);
+    let root = build_kdtree(data);
+    drawGraph(getTextFromTree(root));
     console.log(root);
 }
+
+
+/*
+digraph G {
+2 " 106 ,189 " -> "6 ,114";
+3 "6 ,114" -> " 90 ,102";
+4 " 90 ,102 " -> "21 ,84";
+5 "6 ,114" -> " 84 ,138";
+6 " 84 ,138 " -> "5 ,150";
+7 " 106 ,189 " -> " 148 ,85 ";
+8 " 148 ,85 " -> " 181 ,45 ";
+9 " 181 ,45 " -> " 161 ,29 ";
+10 " 148 ,85 " -> " 158 ,120 ";
+11 }
+
+*/
