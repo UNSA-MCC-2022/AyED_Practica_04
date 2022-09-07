@@ -37,6 +37,13 @@
 			background: #3cb0fd;
 			text-decoration: none;
 		}
+
+		pre code {
+			background-color: #eee;
+			border: 1px solid #999;
+			display: block;
+			padding: 20px;
+		}
 	</style>
 </head>
 
@@ -61,21 +68,33 @@
 			</p>
 		</div>
 
-		<div class="grid-item">&nbsp;</div>
+		<div class="grid-item">
+			<div style="text-align: center;font-weight: bold;"> Representaci&oacute;n visual </div>
+		</div>
+		<div class="grid-item">
+			<div style="text-align: center;font-weight: bold;"> Representaci&oacute;n &aacute;rbol </div>
+		</div>
+		<div class="grid-item">
+			<div style="text-align: center;font-weight: bold;"> Formato Dot </div>
+		</div>
 		<div class="grid-item">
 			<div id="KdTreeCanvas"></div>
 		</div>
+		<div class="grid-item">
+			<div id="KdTreeSvg"></div>
+		</div>
+		<div class="grid-item">
+			<pre>
+				<code id="DotText" style="text-align: left;">
+				</code>
+			</pre>
+		</div>
 		<div class="grid-item">&nbsp;</div>
 		<div class="grid-item">&nbsp;</div>
-		<div class="grid-item"><div id="KdTreeSvg"></div></div>
 		<div class="grid-item">&nbsp;</div>
 		<!--<div class="grid-item">&nbsp;7</div>
 		<div class="grid-item">&nbsp;8</div>
 		<div class="grid-item">&nbsp;9</div> -->
-	</div>
-
-
-
 </body>
 
 <!-- <script> 

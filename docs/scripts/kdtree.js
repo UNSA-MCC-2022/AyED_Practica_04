@@ -13,30 +13,29 @@ function getHeight(node) {
     if(node == null)   
         return 0;
     else   
-        return 1 +(Math.max(getHeight(node.left),getHeight(node.right))); 
+        return 1 + (Math.max(getHeight(node.left), getHeight(node.right))); 
 }
 function generate_dot(node) { 
-    var cad="";
-	if(node==null)
-		return "";
+    var cad = '';
+	if(node == null)
+		return '';
 
 	if(node.left!=null)
 	{
-		cad=cad+'"'+node.point.toString()+"\"";
-		cad=cad+" -> "+'"'+node.left.point.toString()+'"'+";"+"\n";
+		cad = cad + '"' + node.point.toString() + "\"";
+		cad = cad + " -> " + '"' + node.left.point.toString() + '"' + ";" + "\n";
 	}
 	if(node.right!=null)
 	{
-		cad=cad+"\""+node.point.toString()+"\"";
-		cad=cad+" -> "+'"'+node.right.point.toString()+'"'+";"+"\n";
+		cad = cad + "\"" + node.point.toString() + "\"";
+		cad = cad + " -> " + '"' + node.right.point.toString() + '"' + ";" + "\n";
 	}
-	return cad+generate_dot(node.left)+generate_dot(node.right);
+	return cad + generate_dot(node.left) + generate_dot(node.right);
 }
 
 function build_kdtree(points, depth = 0) {
     var n = points.length;
     var axis = depth % k;
-
 
     if (n <= 0) {
         return null;
