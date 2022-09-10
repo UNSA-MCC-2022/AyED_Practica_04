@@ -28,12 +28,13 @@ function setup (){
 	var radio=75;
 
 	//Pregunta 9
-	range_query_circle(root,pon,radio,fe);
+	/*range_query_circle(root,pon,radio,fe);
 	fill(0,255,0,40);
-	circle(pon[0],height-pon[1],radio*2)
+	circle(pon[0],height-pon[1],radio*2)*/
 	//console.log(fe);
 	
 	//Pregunta 10
+	range_query_rect(root,pon,radio,fe);
 	fill(0,255,0,40);
 	rect(pon[0]-h[0],height-pon[1]-h[1],h[0]*2,h[1]*2)
 

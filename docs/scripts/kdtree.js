@@ -71,7 +71,7 @@ function distanceSquared ( point1 , point2 ){
     distance += Math.pow (( point1 [i] - point2 [i]) , 2) ;
     return Math.sqrt ( distance );
 }
-
+//Pregunta 4
 function closest_point_brute_force ( points , point ) {
     var PointCe = points[0];
 	var DistanceMin = distanceSquared(points[0], point);
