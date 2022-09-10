@@ -30,12 +30,16 @@ function setup (){
 	var pon = [237, 218];
 	var h = [50, 100];
 	var radio = 75;
-	range_query_circle(root,pon,radio,fe);
+
+	//Pregunta 9
+	/*range_query_circle(root,pon,radio,fe);
 	fill(0, 255, 0, 40);
-	circle(pon[0], height - pon[1], radio * 2);
+	circle(pon[0], height - pon[1], radio * 2);*/
 	//console.log(fe);
-	//fill(0,255,0,40);
-	//rect(pon[0]-h[0],height-pon[1]-h[1],h[0]*2,h[1]*2)
+		//Pregunta 10
+	range_query_rect(root,pon,radio,fe);
+	fill(0,255,0,40);
+	rect(pon[0]-h[0],height-pon[1]-h[1],h[0]*2,h[1]*2)
 
 	for (let i = 0; i < fe.length; i++){
 		fill(0, 255, 0);

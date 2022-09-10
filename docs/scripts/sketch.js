@@ -15,8 +15,9 @@ function setup() {
             line(0, y, width, y);
         }
     }
-
-    let data = [];
+//pregunta 3
+  /*  let data = [];
+    
     for (let i = 0; i < 12; i++) {
         let x = Math.floor(Math.random() * width);
         let y = Math.floor(Math.random() * height);
@@ -27,8 +28,56 @@ function setup() {
         textSize(12);
         text(x + ',' + y, x + 5, height - y);// 200 -y para q se dibuje apropiadamente
     }
+*/
+//fin pregunta 3
+
+//pregunta 4
+  /*  var data = [
+        [40 ,70] ,
+        [70 ,130] ,
+        [90 ,40] ,
+        [110 , 100] ,
+        [140 ,110] ,
+        [160 , 100]
+    ];
+    
+    var point = [140 ,90]; // query
+    
+    data.forEach(element => {   
+        fill(255, 255, 255);
+            circle(element[0], height - element[1], 7); 
+            textSize(12);
+            text(element[0] + ',' + element[1], element[0] + 5, height - element[1]);
+
+    });*/
+//fin pregunta 4
+//preguna 6
+var data = [
+	[40 ,70] ,
+	[70 ,130] ,
+	[90 ,40] ,
+	[110 , 100] ,
+	[140 ,110] ,
+	[160 , 100] ,
+	[150 , 30]
+];
+
+var point = [140 ,90];
+data.forEach(element => {   
+    fill(255, 255, 255);
+        circle(element[0], height - element[1], 7); 
+        textSize(12);
+        text(element[0] + ',' + element[1], element[0] + 5, height - element[1]);
+
+}); 
+//fin pregunta 6
+
 
     let root = build_kdtree(data);
+    //pregunta 5 y 6
+    closest_point_brute_force ( data , point ) 
+    //naive_closest_point  ( data , point ) 
+    //fin pregunta 5 y 6
     drawGraph(generate_dot(root));
     //console.log(root);
 }

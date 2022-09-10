@@ -63,8 +63,9 @@ function distanceSquared(point1, point2) {
 		distance += Math.pow((point1[i] - point2[i]), 2);
 	return Math.sqrt(distance);
 }
-function closest_point_brute_force(points, point) {
-	var PointCe = points[0];
+//Pregunta 4
+function closest_point_brute_force ( points , point ) {
+    var PointCe = points[0];
 	var DistanceMin = distanceSquared(points[0], point);
 	for (var i = 1; i < points.length; i++) {
 		var t = distanceSquared(points[i], point);
@@ -104,7 +105,7 @@ function closer_point(point, p1, p2) {
 		return p1;
 	return p2;
 
-}
+//Pregunta 7
 function closest_point(node, point, depth = 0) {
 
 	if (node === null)
@@ -127,7 +128,30 @@ function closest_point(node, point, depth = 0) {
 	return best;
 }
 
+//Pregunta 8
+function KNN(points, point, K)
+{
+	var PointCe = [];
+	var Result = [];
+	var pointm=points[0];
+	for (var i = 0; i < points.length; i++) 
+	{
+		var aux=distanceSquared(points[i],point);
+		PointCe.push([aux,points[i]])
+		//console.log(PointCe[i])
+
+		PointCe.sort(function (a,b){
+			return a[0]-b[0];
+		});
+	}
+	for(var i = 0; i < PointCe.length; i++){
+		Result.push(PointCe[i].slice(1,2));
+	}
+	console.log(Result.slice(0, k))
+}
+
 var p = 0;
+//Pregunta 9
 function range_query_circle(node, center, radio, queue, depth = 0) {
 	if (node == null) {
 		return null;
@@ -155,7 +179,7 @@ function range_query_circle(node, center, radio, queue, depth = 0) {
 	return best;
 }
 
-
+//pregunta 10
 function range_query_rect(node, center, hug, queue, depth = 0) {
 	if (node == null) {
 		return null;
@@ -183,16 +207,34 @@ function range_query_rect(node, center, hug, queue, depth = 0) {
 	return best;
 }
 
+//pregunta 5
+var data = [
+    [40 ,70] ,
+    [70 ,130] ,
+    [90 ,40] ,
+    [110 , 100] ,
+    [140 ,110] ,
+    [160 , 100]
+];
 
-function range_query_circle1(node, center, radio, queue, depth = 0) {
-	if (node == null) {
-		return null;
-	}
-	var a = distanceSquared(node.point, center);
-	console.log([node.point, a]);
-	if (a <= radio) {
-		queue.push(node.point);
-	}
-	range_query_circle1(node.left, center, radio, queue);
-	range_query_circle1(node.right, center, radio, queue);
-}
+var point = [140 ,90]; // query
+
+//closest_point_brute_force ( data , point ) 
+//naive_closest_point  ( data , point ) 
+//fin pregunta 5
+
+//pregunta 6
+var data = [
+	[40 ,70] ,
+	[70 ,130] ,
+	[90 ,40] ,
+	[110 , 100] ,
+	[140 ,110] ,
+	[160 , 100] ,
+	[150 , 30]
+];
+
+var point = [140 ,90]; // query
+//closest_point_brute_force ( data , point ) 
+//naive_closest_point  ( data , point ) 
+//Fin pregunta 6
