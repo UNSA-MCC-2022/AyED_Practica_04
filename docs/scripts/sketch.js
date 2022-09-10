@@ -30,5 +30,5 @@ function setup() {
 
     let root = build_kdtree(data);
     drawGraph(generate_dot(root));
-    console.log(root);
+    //console.log(root);
 }

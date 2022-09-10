@@ -1,20 +1,18 @@
 k = 2;
-
 class Node {
-    constructor(point, axis) {
-        this.point = point;
-        this.left = null;
-        this.right = null;
-        this.axis = axis;
-    }
+	constructor(point, axis) {
+		this.point = point;
+		this.left = null;
+		this.right = null;
+		this.axis = axis;
+	}
+}
+function getHeight(node) {
+	if (node == null)
+		return 0;
+	return max(1 + getHeight(node.left), 1 + getHeight(node.right))
 }
 
-function getHeight(node) { 
-    if(node == null)   
-        return 0;
-    else   
-        return 1 + (Math.max(getHeight(node.left), getHeight(node.right))); 
-}
 function generate_dot(node) { 
     var cad = '';
 	if(node == null)
@@ -34,46 +32,39 @@ function generate_dot(node) {
 }
 
 function build_kdtree(points, depth = 0) {
-    var n = points.length;
-    var axis = depth % k;
+	var n = points.length;
+	var axis = depth % k;
 
-    if (n <= 0) {
-        return null;
-    }
-    if (n == 1) {
-        return new Node(points[0], axis)
-    }
+	if (n <= 0) {
+		return null;
+	}
+	if (n == 1) {
+		return new Node(points[0], axis)
+	}
+	var median = Math.floor(points.length / 2);
 
-    var median = Math.floor(points.length / 2);
+	points.sort(function (a, b) {
+		return a[axis] - b[axis];
+	});
 
-    // sort by the axis
-    points.sort(function (a, b) {
-        return a[axis] - b[axis];
-    });
-    //console.log(points);
+	var left = points.slice(0, median);
+	var right = points.slice(median + 1);
 
-    var left = points.slice(0, median);
-    var right = points.slice(median + 1);
+	var node = new Node(points[median].slice(0, k), axis);
+	node.left = build_kdtree(left, depth + 1);
+	node.right = build_kdtree(right, depth + 1);
 
-    //console.log(right);
-
-    var node = new Node(points[median].slice(0, k), axis);
-    node.left = build_kdtree(left, depth + 1);
-    node.right = build_kdtree(right, depth + 1);
-
-    return node;
-
+	return node;
 }
 
-function distanceSquared ( point1 , point2 ){
-    var distance = 0;
-    for (var i = 0; i < k; i ++)
-    distance += Math.pow (( point1 [i] - point2 [i]) , 2) ;
-    return Math.sqrt ( distance );
+function distanceSquared(point1, point2) {
+	var distance = 0;
+	for (var i = 0; i < k; i++)
+		distance += Math.pow((point1[i] - point2[i]), 2);
+	return Math.sqrt(distance);
 }
-
-function closest_point_brute_force ( points , point ) {
-    var PointCe = points[0];
+function closest_point_brute_force(points, point) {
+	var PointCe = points[0];
 	var DistanceMin = distanceSquared(points[0], point);
 	for (var i = 1; i < points.length; i++) {
 		var t = distanceSquared(points[i], point);
@@ -84,7 +75,6 @@ function closest_point_brute_force ( points , point ) {
 	}
 	return PointCe;
 }
-
 function naive_closest_point(node, point, depth = 0, best = null) {
 	if (node != null) {
 		var dis = distanceSquared(node.point, point);
@@ -103,10 +93,20 @@ function naive_closest_point(node, point, depth = 0, best = null) {
 	}
 	else {
 		return best;
-	}	
+	}
 }
+function closer_point(point, p1, p2) {
+	if (p2 == null) {
+		return p1;
+	}
+	var distance = distanceSquared(p1.point, point);
+	if (distance < distanceSquared(p2.point, point))
+		return p1;
+	return p2;
 
+}
 function closest_point(node, point, depth = 0) {
+
 	if (node === null)
 		return null;
 	var axis = depth % k;
@@ -125,27 +125,6 @@ function closest_point(node, point, depth = 0) {
 	}
 
 	return best;
-}
-
-function KNN(points, point, K)
-{
-	var PointCe = [];
-	var Result = [];
-	var pointm=points[0];
-	for (var i = 0; i < points.length; i++) 
-	{
-		var aux=distanceSquared(points[i],point);
-		PointCe.push([aux,points[i]])
-		//console.log(PointCe[i])
-
-		PointCe.sort(function (a,b){
-			return a[0]-b[0];
-		});
-	}
-	for(var i = 0; i < PointCe.length; i++){
-		Result.push(PointCe[i].slice(1,2));
-	}
-	console.log(Result.slice(0, k))
 }
 
 var p = 0;
@@ -204,16 +183,16 @@ function range_query_rect(node, center, hug, queue, depth = 0) {
 	return best;
 }
 
-var data = [
-    [40 ,70] ,
-    [70 ,130] ,
-    [90 ,40] ,
-    [110 , 100] ,
-    [140 ,110] ,
-    [160 , 100]
-];
 
-var point = [140 ,90]; // query
-
-closest_point_brute_force ( data , point )
-
+function range_query_circle1(node, center, radio, queue, depth = 0) {
+	if (node == null) {
+		return null;
+	}
+	var a = distanceSquared(node.point, center);
+	console.log([node.point, a]);
+	if (a <= radio) {
+		queue.push(node.point);
+	}
+	range_query_circle1(node.left, center, radio, queue);
+	range_query_circle1(node.right, center, radio, queue);
+}
