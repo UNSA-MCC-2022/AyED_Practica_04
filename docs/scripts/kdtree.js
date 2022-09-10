@@ -104,6 +104,7 @@ function closer_point(point, p1, p2) {
 	if (distance < distanceSquared(p2.point, point))
 		return p1;
 	return p2;
+}
 
 //Pregunta 7
 function closest_point(node, point, depth = 0) {
@@ -129,8 +130,7 @@ function closest_point(node, point, depth = 0) {
 }
 
 //Pregunta 8
-function KNN(points, point, K)
-{
+function KNN(points, point, K) {
 	var PointCe = [];
 	var Result = [];
 	var pointm=points[0];
@@ -235,6 +235,7 @@ var data = [
 ];
 
 var point = [140 ,90]; // query
-//closest_point_brute_force ( data , point ) 
-//naive_closest_point  ( data , point ) 
-//Fin pregunta 6
+
+// closest_point_brute_force ( data , point ) 
+// naive_closest_point  ( data , point ) 
+// Fin pregunta 6
